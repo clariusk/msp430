@@ -144,7 +144,7 @@ bool MspSwUpdate::parse(uint8_t b)
         switch (cmd)
         {
             // sent by host to send a series of bytes for the software update
-            case comm::swUpdateSetupData:
+            case spiEnum::swUpdateSetupData:
                 ret = setupWrite(parser_.payload(), parser_.payloadSz());
                 // only notify the host if the setup passed, otherwise we don't want to get into a state
                 // where we potentially write bad data
@@ -152,7 +152,7 @@ bool MspSwUpdate::parse(uint8_t b)
                     notifyHost();
                 break;
             // sent by host to send a series of bytes for the software update
-            case comm::swUpdateBytes:
+            case spiEnum::swUpdateBytes:
                 ret = writeData(parser_.payload(), parser_.payloadSz());
                 notifyHost();
                 break;
